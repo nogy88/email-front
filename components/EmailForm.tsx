@@ -1,9 +1,24 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import confetti from 'canvas-confetti'
 
 const EmailForm: React.FC = () => {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<string | null>(null)
+
+  const handleConfetti = (): void => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    })
+  }
+
+  useEffect(() => {
+    if (status?.includes('Email sent successfully') === true) {
+      handleConfetti()
+    }
+  }, [status])
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault()
@@ -21,7 +36,7 @@ const EmailForm: React.FC = () => {
       const result = await response.json()
 
       if (response.ok) {
-        setStatus('Email sent successfully!, Santa will send you a Christmas gift soon <3')
+        setStatus('Email sent successfully!, Santa will send you a Christmas 🎁 through your email <3')
         setEmail('')
       } else {
         console.log('Failed', result?.message)
@@ -32,8 +47,6 @@ const EmailForm: React.FC = () => {
       setStatus('An unexpected error occurred.')
     }
   }
-
-  const snowflakes = Array.from({ length: 50 }) // Generate 50 snowflakes
 
   return (
     <div className='relative w-full h-full min-h-screen overflow-hidden flex items-center justify-center px-5'>
