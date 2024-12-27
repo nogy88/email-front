@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import confetti from 'canvas-confetti'
 
 const EmailForm: React.FC = () => {
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<string | null>(null)
 
@@ -25,6 +26,7 @@ const EmailForm: React.FC = () => {
     setStatus(null)
 
     try {
+      setLoading(true)
       const response = await fetch('https://email-backend-teal.vercel.app/send-email', {
         method: 'POST',
         headers: {
@@ -45,6 +47,8 @@ const EmailForm: React.FC = () => {
     } catch (error) {
       console.error('Error sending email:', error)
       setStatus('An unexpected error occurred.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -90,6 +94,7 @@ const EmailForm: React.FC = () => {
           </div> */}
           <button
             type='submit'
+            disabled={loading}
             className='w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200'
           >
             Take a gift 🎁
