@@ -53,7 +53,7 @@ const EmailForm: React.FC = () => {
       <img src='https://i.etsystatic.com/25155543/r/il/4de883/4343966979/il_570xN.4343966979_pvw3.jpg' className='md:hidden block absolute left-0 top-0 object-cover h-full' />
       <img src='https://www.nikkisplate.com/wp-content/uploads/2022/11/Christmas-Aesthetic-Wallpaper-10.png' className='hidden md:block absolute left-0 top-0 object-center md:w-full md:h-full' />
 
-      <div className='max-w-md w-full p-6 bg-white drop-shadow-xl rounded-lg'>
+      <div className='max-w-md w-full p-6 bg-white drop-shadow-xl rounded-lg z-50'>
         <h2 className='text-2xl font-bold mb-4'>
           Send email to your Santa
         </h2>

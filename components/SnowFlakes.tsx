@@ -12,7 +12,7 @@ const SnowFlakes: FunctionComponent = () => {
   }, [])
 
   return (
-    <div className='w-full h-full min-h-screen fixed left-0 top-0'>
+    <div className='w-full h-full min-h-screen z-30 fixed left-0 top-0'>
       {Array.from({ length: snowflakes }).map((_, index) => (
         <div
           key={index}
